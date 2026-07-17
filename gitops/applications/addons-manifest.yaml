@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: addons-manifest
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/fabio-mrocha/argocd-mlops.git
+        revision: main
+        files:
+        - path: gitops/addons/manifests/manifests-*.yaml
+  template:
+    metadata:
+      name: '{{ manifest.name }}'
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{ manifest.namespace }}'
+      project: default
+      source:
+        repoURL: '{{ manifest.repoURL }}'
+        targetRevision: '{{ manifest.targetRevision }}'
+        path: "{{ manifest.path }}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PruneLast=true
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true

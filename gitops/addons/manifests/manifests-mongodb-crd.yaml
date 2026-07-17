@@ -1,0 +1,6 @@
+manifest:
+  namespace: mongodb
+  name: mongodb-crd
+  repoURL: https://github.com/mongodb/helm-charts.git
+  targetRevision: mongodb-kubernetes-1.9.1
+  path: charts/mongodb-kubernetes/crds

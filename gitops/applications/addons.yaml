@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: addons
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/fabio-mrocha/argocd-mlops.git
+        revision: main
+        files:
+        - path: gitops/addons/charts/values-*.yaml
+  template:
+    metadata:
+      name: '{{ chart.alias }}'
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{ chart.namespace }}'
+      project: default
+      sources:
+      - repoURL: https://github.com/fabio-mrocha/argocd-mlops.git
+        targetRevision: main
+        ref: gitops
+      - repoURL: '{{ chart.url }}'
+        chart: '{{ chart.name }}'
+        targetRevision: '{{ chart.version }}'
+        helm:
+          releaseName: '{{ chart.alias }}'
+          valueFiles:
+            - '$gitops/gitops/addons/helms/values-{{ chart.alias }}.yaml'
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          namespace: '{{ chart.namespace }}'
+          jsonPointers:
+            - /data
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PruneLast=true
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true

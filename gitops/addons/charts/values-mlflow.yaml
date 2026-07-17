@@ -1,0 +1,6 @@
+chart:
+  name: mlflow
+  alias: mlflow
+  namespace: mlflow
+  url: https://community-charts.github.io/helm-charts
+  version: 1.11.2

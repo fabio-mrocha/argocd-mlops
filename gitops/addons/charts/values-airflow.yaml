@@ -1,0 +1,6 @@
+chart:
+  name: airflow
+  alias: airflow
+  namespace: airflow
+  url: https://airflow.apache.org
+  version: 1.22.0

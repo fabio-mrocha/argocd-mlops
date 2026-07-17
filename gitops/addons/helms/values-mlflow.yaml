@@ -1,0 +1,20 @@
+# serviceAccount:
+#   annotations: 
+#     iam.gke.io/gcp-service-account: gsa-mlflow@gcp-project.iam.gserviceaccount.com
+postgresql:
+  enabled: true
+# backendStore:
+#   postgres:
+#     enabled: true
+#     host: postgres.example.com
+#     database: mlflow
+#     user: mlflow
+#     password: change-me
+# artifactRoot:
+#   gcs:
+#     enabled: true
+#     bucket: change-me
+# ingress:
+#   enabled: true
+#   hosts:
+#     - host: airflow.example.local

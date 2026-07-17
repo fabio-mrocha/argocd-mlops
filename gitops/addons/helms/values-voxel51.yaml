@@ -1,0 +1,28 @@
+app:
+  name: voxel51
+image:
+  repository: docker.io/fabiomrocha/voxel51-open-source
+  tag: latest
+resources:
+  limits:
+    cpu: 2
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 1Gi
+service:
+  additional:
+    ports:
+    - port: 5151
+      targetPort: voxel51
+      protocol: TCP
+      name: voxel51
+ingress:
+  enabled: false
+securityContext:
+  runAsUser: 999
+  runAsGroup: 999
+configmap:
+  data:
+    TZ: America/Sao_Paulo
+    FIFTYONE_DATABASE_URI: mongodb://admin:adminPassword@mongodb-svc.mongodb.svc.cluster.local:27017/fiftyone?authSource=admin

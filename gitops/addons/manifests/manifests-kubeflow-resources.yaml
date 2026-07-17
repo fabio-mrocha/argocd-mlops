@@ -1,0 +1,6 @@
+manifest:
+  namespace: kubeflow
+  name: kubeflow-resources
+  repoURL: https://github.com/kubeflow/pipelines.git
+  targetRevision: 2.16.1
+  path: manifests/kustomize/cluster-scoped-resources

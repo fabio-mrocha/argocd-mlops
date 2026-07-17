@@ -1,0 +1,6 @@
+chart:
+  name: app-chart
+  alias: voxel51
+  namespace: voxel51
+  url: https://fabio-mrocha.github.io/helm-chart
+  version: 1.0.0

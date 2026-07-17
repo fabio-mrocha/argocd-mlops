@@ -1,0 +1,6 @@
+manifest:
+  namespace: mongodb
+  name: mongodb-cluster
+  repoURL: https://github.com/fabio-mrocha/argocd-mlops.git
+  targetRevision: main
+  path: gitops/addons/manifests/mongodb-cluster

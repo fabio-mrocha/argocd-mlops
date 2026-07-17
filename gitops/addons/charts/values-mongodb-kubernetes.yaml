@@ -1,0 +1,6 @@
+chart:
+  name: mongodb-kubernetes
+  alias: mongodb-kubernetes
+  namespace: mongodb
+  url: https://mongodb.github.io/helm-charts
+  version: 1.9.1

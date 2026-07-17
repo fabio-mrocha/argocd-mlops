@@ -1,0 +1,6 @@
+chart:
+  name: argo-cd
+  alias: argo-cd
+  namespace: argocd
+  url: ghcr.io/argoproj/argo-helm
+  version: 10.1.2
